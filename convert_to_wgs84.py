@@ -44,11 +44,11 @@ def convert(source, destination):
                     )
 
 @click.command()
-@click.option('--src',  prompt="What directory would you like to convert?", help="Directory containing files to convert")
-@click.option('--dst',  prompt="Where would you like the output files stored?", help="Output directory")
-@click.option('--ext',  default="tif")
-@click.option('--cpus', default=4)
-@click.option('--dryrun', is_flag=True, default=False)
+@click.option('--src',  required=True, help="Directory containing files to convert")
+@click.option('--dst',  required=True, help="Output directory")
+@click.option('--ext',  help="The file extension to search for", default="tif")
+@click.option('--cpus', help="The number of cpus to use", default=4)
+@click.option('--dryrun', help="Print all the files that will be processed without doing any actual work", is_flag=True, default=False)
 def convert_to_wgs84(src, dst, ext, cpus, dryrun):
     jobs = []
     if os.path.isdir(src):
